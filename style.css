@@ -629,57 +629,6 @@ body::before {
 }
 
 /* Action Button Tooltip (custom; avoids native title popups) */
-.action-btn[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
-    padding: 0.45rem 0.75rem;
-    background: rgba(37, 37, 37, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-size: 0.75rem;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.16s ease;
-    z-index: 2000;
-    box-shadow: var(--shadow-md);
-    font-weight: 600;
-}
-
-.action-btn[data-tooltip]::before {
-    content: '';
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px) rotate(45deg);
-    width: 10px;
-    height: 10px;
-    background: rgba(37, 37, 37, 0.95);
-    border-left: 1px solid rgba(255, 255, 255, 0.10);
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-    pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.16s ease;
-    z-index: 1999;
-}
-
-.action-btn[data-tooltip]:hover::after,
-.action-btn[data-tooltip]:hover::before {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.action-btn[data-tooltip]:disabled::after,
-.action-btn[data-tooltip]:disabled::before {
-    display: none;
-}
 
 /* Visibility Classes */
 .json-only {
@@ -793,52 +742,6 @@ body::before {
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.info-btn[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
-    padding: 0.45rem 0.75rem;
-    background: rgba(37, 37, 37, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-size: 0.75rem;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.16s ease;
-    z-index: 2000;
-    box-shadow: var(--shadow-md);
-    font-weight: 600;
-}
-
-.info-btn[data-tooltip]::before {
-    content: '';
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px) rotate(45deg);
-    width: 10px;
-    height: 10px;
-    background: rgba(37, 37, 37, 0.95);
-    border-left: 1px solid rgba(255, 255, 255, 0.10);
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-    pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.16s ease;
-    z-index: 1999;
-}
-
-.info-btn[data-tooltip]:hover::after,
-.info-btn[data-tooltip]:hover::before {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
 
 .stat-item {
     display: flex;
@@ -2027,7 +1930,8 @@ input[type="number"] {
     letter-spacing: 0.08em;
 }
 
-.copy-btn {
+.copy-btn,
+.download-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -2042,20 +1946,29 @@ input[type="number"] {
     transition: all 0.2s ease;
 }
 
-.copy-btn svg {
+.copy-btn svg,
+.download-btn svg {
     width: 14px;
     height: 14px;
 }
 
-.copy-btn:hover {
+.copy-btn:hover,
+.download-btn:hover {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-1px);
 }
 
-.copy-btn:focus-visible {
+.copy-btn:focus-visible,
+.download-btn:focus-visible {
     outline: 2px solid rgba(139, 92, 246, 0.5);
     outline-offset: 2px;
+}
+
+.converter-row-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .converter-input {
@@ -2075,7 +1988,7 @@ input[type="number"] {
         align-items: flex-start;
     }
 
-    .copy-btn {
+    .converter-row-actions {
         align-self: flex-end;
     }
 }

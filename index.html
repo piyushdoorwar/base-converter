@@ -16,19 +16,19 @@
             </div>
             <div class="header-right">
                 <div class="action-group header-actions">
-                    <button class="action-btn" data-action="clear-all" data-tooltip="Clear all">
+                    <button class="action-btn" data-action="clear-all">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="3 6 5 6 21 6"></polyline>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                         </svg>
                     </button>
-                    <button class="action-btn" data-action="copy-all" data-tooltip="Copy all">
+                    <button class="action-btn" data-action="copy-all">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="9" y="9" width="13" height="13" rx="2"></rect>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                         </svg>
                     </button>
-                    <button class="action-btn" data-action="paste-sample" data-tooltip="Load sample">
+                    <button class="action-btn" data-action="paste-sample">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                             <polyline points="13 2 13 9 20 9"></polyline>
@@ -38,7 +38,7 @@
                         </svg>
                     </button>
                 </div>
-                <button class="info-btn" id="schemaHelpBtn" aria-label="Converter tips" data-tooltip="Converter tips">
+                <button class="info-btn" id="schemaHelpBtn" aria-label="Converter tips">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="9"></circle>
                         <line x1="12" y1="10" x2="12" y2="16"></line>
@@ -57,12 +57,21 @@
                                 <span class="converter-label-text">Text</span>
                                 <span class="field-tag">ASCII</span>
                             </label>
-                            <button class="copy-btn" data-action="copy-field" data-target="text" aria-label="Copy text">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                            </button>
+                            <div class="converter-row-actions">
+                                <button class="copy-btn" data-action="copy-field" data-target="text" aria-label="Copy text">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                                <button class="download-btn" data-action="download-field" data-target="text" aria-label="Download text">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7 10 12 15 17 10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <textarea class="field-input converter-input" id="text-input" data-source="text" rows="5" placeholder="Type any text here..."></textarea>
                     </div>
@@ -75,12 +84,21 @@
                                 <span class="converter-label-text">Decimal (ASCII)</span>
                                 <span class="field-tag">Base 10</span>
                             </label>
-                            <button class="copy-btn" data-action="copy-field" data-target="decimal" aria-label="Copy decimal">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                            </button>
+                            <div class="converter-row-actions">
+                                <button class="copy-btn" data-action="copy-field" data-target="decimal" aria-label="Copy decimal">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                                <button class="download-btn" data-action="download-field" data-target="decimal" aria-label="Download decimal">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7 10 12 15 17 10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <textarea class="field-input converter-input" id="decimal-input" data-source="decimal" rows="5" placeholder="72 101 108 108 111"></textarea>
                     </div>
@@ -93,12 +111,21 @@
                                 <span class="converter-label-text">Binary</span>
                                 <span class="field-tag">Base 2</span>
                             </label>
-                            <button class="copy-btn" data-action="copy-field" data-target="binary" aria-label="Copy binary">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                            </button>
+                            <div class="converter-row-actions">
+                                <button class="copy-btn" data-action="copy-field" data-target="binary" aria-label="Copy binary">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                                <button class="download-btn" data-action="download-field" data-target="binary" aria-label="Download binary">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7 10 12 15 17 10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <textarea class="field-input converter-input" id="binary-input" data-source="binary" rows="4" placeholder="01001000 01101001"></textarea>
                     </div>
@@ -111,12 +138,21 @@
                                 <span class="converter-label-text">Hexadecimal</span>
                                 <span class="field-tag">Base 16</span>
                             </label>
-                            <button class="copy-btn" data-action="copy-field" data-target="hex" aria-label="Copy hexadecimal">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                            </button>
+                            <div class="converter-row-actions">
+                                <button class="copy-btn" data-action="copy-field" data-target="hex" aria-label="Copy hexadecimal">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                                <button class="download-btn" data-action="download-field" data-target="hex" aria-label="Download hexadecimal">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7 10 12 15 17 10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <textarea class="field-input converter-input" id="hex-input" data-source="hex" rows="4" placeholder="48 65 6C 6C 6F"></textarea>
                     </div>
@@ -129,12 +165,21 @@
                                 <span class="converter-label-text">Octal</span>
                                 <span class="field-tag">Base 8</span>
                             </label>
-                            <button class="copy-btn" data-action="copy-field" data-target="octal" aria-label="Copy octal">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                            </button>
+                            <div class="converter-row-actions">
+                                <button class="copy-btn" data-action="copy-field" data-target="octal" aria-label="Copy octal">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                                <button class="download-btn" data-action="download-field" data-target="octal" aria-label="Download octal">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7 10 12 15 17 10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <textarea class="field-input converter-input" id="octal-input" data-source="octal" rows="4" placeholder="110 145 154 154 157"></textarea>
                     </div>

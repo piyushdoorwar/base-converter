@@ -37,32 +37,18 @@ const SOURCE_LABELS = {
   octal: "Octal"
 };
 
+const DOWNLOAD_NAMES = {
+  text: "text.txt",
+  decimal: "decimal.txt",
+  binary: "binary.txt",
+  hex: "hex.txt",
+  octal: "octal.txt"
+};
+
 let isUpdating = false;
 
 function showToast(message, type = "info") {
-  if (!toastContainer) return;
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
-
-  let icon = "INFO";
-  if (type === "success") icon = "OK";
-  if (type === "error") icon = "ERR";
-
-  toast.innerHTML = `
-    <span class="toast-icon">${icon}</span>
-    <span class="toast-message">${message}</span>
-  `;
-
-  toastContainer.appendChild(toast);
-  requestAnimationFrame(() => {
-    toast.classList.add("show");
-  });
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-    toast.classList.add("hide");
-    setTimeout(() => toast.remove(), 300);
-  }, 2600);
+  return;
 }
 
 function splitTokens(value) {
@@ -333,6 +319,24 @@ function copyField(key) {
     .catch(() => showToast("Copy failed", "error"));
 }
 
+function downloadField(key) {
+  const value = inputs[key]?.value.trim() ?? "";
+  if (!value) {
+    showToast("Nothing to download", "error");
+    return;
+  }
+  const blob = new Blob([value], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = DOWNLOAD_NAMES[key] || `${key}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  showToast(`${SOURCE_LABELS[key]} downloaded`, "success");
+}
+
 function loadSample() {
   if (!inputs.text) return;
   inputs.text.value = "Hello";
@@ -362,6 +366,15 @@ document.querySelectorAll(".copy-btn[data-action=\"copy-field\"]").forEach((btn)
     const target = btn.dataset.target;
     if (target && inputs[target]) {
       copyField(target);
+    }
+  });
+});
+
+document.querySelectorAll(".download-btn[data-action=\"download-field\"]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const target = btn.dataset.target;
+    if (target && inputs[target]) {
+      downloadField(target);
     }
   });
 });
