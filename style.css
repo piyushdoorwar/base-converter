@@ -305,14 +305,16 @@ body::before {
 }
 
 .action-btn[data-action="clear-all"],
-.action-btn[data-action="paste-sample"] {
+.action-btn[data-action="paste-sample"],
+.action-btn#schemaHelpBtn {
     border-color: transparent;
     background-color: transparent;
     box-shadow: none;
 }
 
 .action-btn[data-action="clear-all"]:hover,
-.action-btn[data-action="paste-sample"]:hover {
+.action-btn[data-action="paste-sample"]:hover,
+.action-btn#schemaHelpBtn:hover {
     background-color: transparent;
     border-color: transparent;
     box-shadow: none;
@@ -320,12 +322,14 @@ body::before {
 }
 
 .action-btn[data-action="clear-all"]:active,
-.action-btn[data-action="paste-sample"]:active {
+.action-btn[data-action="paste-sample"]:active,
+.action-btn#schemaHelpBtn:active {
     transform: none;
 }
 
 .action-btn[data-action="clear-all"]:focus-visible,
-.action-btn[data-action="paste-sample"]:focus-visible {
+.action-btn[data-action="paste-sample"]:focus-visible,
+.action-btn#schemaHelpBtn:focus-visible {
     outline-offset: 2px;
     border-color: transparent;
     background-color: transparent;
