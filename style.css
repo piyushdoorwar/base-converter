@@ -147,46 +147,6 @@ body::before {
     gap: 1rem;
 }
 
-.info-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    background: transparent;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-}
-
-.info-btn:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-1px);
-}
-
-.info-btn:focus-visible {
-    outline: 2px solid rgba(139, 92, 246, 0.5);
-    outline-offset: 3px;
-}
-
-.info-btn svg {
-    width: 16px;
-    height: 16px;
-}
-
-.info-glyph {
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1;
-    font-family: 'Georgia', 'Times New Roman', serif;
-    font-style: italic;
-}
-
 /* Mode Switcher */
 .mode-switcher {
     display: flex;
@@ -343,6 +303,11 @@ body::before {
 .action-btn svg {
     width: 16px;
     height: 16px;
+}
+
+.info-icon {
+    width: 18px;
+    height: 18px;
 }
 
 /* Dropdown */
@@ -1966,6 +1931,29 @@ input[type="number"] {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-1px);
+}
+
+@keyframes copy-success-icon {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.14);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.copy-btn.is-copied,
+.copy-btn.is-copied:hover {
+    transform: translateY(0);
+}
+
+.copy-btn.is-copied svg,
+.download-btn.is-downloaded svg {
+    transform-origin: center;
+    animation: copy-success-icon 0.5s ease;
 }
 
 .copy-btn:focus-visible,

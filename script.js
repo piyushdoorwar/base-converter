@@ -313,10 +313,47 @@ function copyField(key) {
     showToast("Nothing to copy", "error");
     return;
   }
+
+  const copyButton = document.querySelector(`.copy-btn[data-target="${key}"]`);
   navigator.clipboard
     .writeText(value)
-    .then(() => showToast(`${SOURCE_LABELS[key]} copied`, "success"))
+    .then(() => {
+      flashCopyButton(copyButton);
+      showToast(`${SOURCE_LABELS[key]} copied`, "success");
+    })
     .catch(() => showToast("Copy failed", "error"));
+}
+
+function flashCopyButton(button) {
+  if (!button) return;
+
+  if (button._copiedStateTimeout) {
+    window.clearTimeout(button._copiedStateTimeout);
+  }
+
+  button.classList.remove("is-copied");
+  void button.offsetWidth;
+  button.classList.add("is-copied");
+  button._copiedStateTimeout = window.setTimeout(() => {
+    button.classList.remove("is-copied");
+    button._copiedStateTimeout = null;
+  }, 500);
+}
+
+function flashDownloadButton(button) {
+  if (!button) return;
+
+  if (button._downloadedStateTimeout) {
+    window.clearTimeout(button._downloadedStateTimeout);
+  }
+
+  button.classList.remove("is-downloaded");
+  void button.offsetWidth;
+  button.classList.add("is-downloaded");
+  button._downloadedStateTimeout = window.setTimeout(() => {
+    button.classList.remove("is-downloaded");
+    button._downloadedStateTimeout = null;
+  }, 500);
 }
 
 function downloadField(key) {
@@ -325,6 +362,7 @@ function downloadField(key) {
     showToast("Nothing to download", "error");
     return;
   }
+  const downloadButton = document.querySelector(`.download-btn[data-target="${key}"]`);
   const blob = new Blob([value], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -334,6 +372,7 @@ function downloadField(key) {
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
+  flashDownloadButton(downloadButton);
   showToast(`${SOURCE_LABELS[key]} downloaded`, "success");
 }
 
