@@ -270,7 +270,7 @@ function handleInput(sourceKey) {
   setAllValues(result.values, sourceKey);
 }
 
-function clearAll() {
+function clearAll(triggerButton = null) {
   isUpdating = true;
   Object.values(inputs).forEach((field) => {
     if (field) field.value = "";
@@ -278,6 +278,7 @@ function clearAll() {
   isUpdating = false;
   clearInvalids();
   updateStatus([], "text");
+  flashActionButton(triggerButton);
   showToast("Converter cleared", "info");
 }
 
@@ -324,36 +325,32 @@ function copyField(key) {
     .catch(() => showToast("Copy failed", "error"));
 }
 
-function flashCopyButton(button) {
+function flashButton(button, activeClass, timeoutKey) {
   if (!button) return;
 
-  if (button._copiedStateTimeout) {
-    window.clearTimeout(button._copiedStateTimeout);
+  if (button[timeoutKey]) {
+    window.clearTimeout(button[timeoutKey]);
   }
 
-  button.classList.remove("is-copied");
+  button.classList.remove(activeClass);
   void button.offsetWidth;
-  button.classList.add("is-copied");
-  button._copiedStateTimeout = window.setTimeout(() => {
-    button.classList.remove("is-copied");
-    button._copiedStateTimeout = null;
+  button.classList.add(activeClass);
+  button[timeoutKey] = window.setTimeout(() => {
+    button.classList.remove(activeClass);
+    button[timeoutKey] = null;
   }, 500);
 }
 
+function flashCopyButton(button) {
+  flashButton(button, "is-copied", "_copiedStateTimeout");
+}
+
 function flashDownloadButton(button) {
-  if (!button) return;
+  flashButton(button, "is-downloaded", "_downloadedStateTimeout");
+}
 
-  if (button._downloadedStateTimeout) {
-    window.clearTimeout(button._downloadedStateTimeout);
-  }
-
-  button.classList.remove("is-downloaded");
-  void button.offsetWidth;
-  button.classList.add("is-downloaded");
-  button._downloadedStateTimeout = window.setTimeout(() => {
-    button.classList.remove("is-downloaded");
-    button._downloadedStateTimeout = null;
-  }, 500);
+function flashActionButton(button) {
+  flashButton(button, "is-confirmed", "_confirmedStateTimeout");
 }
 
 function downloadField(key) {
@@ -376,10 +373,11 @@ function downloadField(key) {
   showToast(`${SOURCE_LABELS[key]} downloaded`, "success");
 }
 
-function loadSample() {
+function loadSample(triggerButton = null) {
   if (!inputs.text) return;
   inputs.text.value = "Hello";
   handleInput("text");
+  flashActionButton(triggerButton);
   showToast("Loaded sample input", "success");
 }
 
@@ -394,9 +392,9 @@ Object.keys(inputs).forEach((key) => {
 document.querySelectorAll(".action-btn[data-action]").forEach((btn) => {
   btn.addEventListener("click", () => {
     const action = btn.dataset.action;
-    if (action === "clear-all") clearAll();
+    if (action === "clear-all") clearAll(btn);
     if (action === "copy-all") copyAll();
-    if (action === "paste-sample") loadSample();
+    if (action === "paste-sample") loadSample(btn);
   });
 });
 

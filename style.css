@@ -304,6 +304,34 @@ body::before {
     outline-offset: 2px;
 }
 
+.action-btn[data-action="clear-all"],
+.action-btn[data-action="paste-sample"] {
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.action-btn[data-action="clear-all"]:hover,
+.action-btn[data-action="paste-sample"]:hover {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    transform: none;
+}
+
+.action-btn[data-action="clear-all"]:active,
+.action-btn[data-action="paste-sample"]:active {
+    transform: none;
+}
+
+.action-btn[data-action="clear-all"]:focus-visible,
+.action-btn[data-action="paste-sample"]:focus-visible {
+    outline-offset: 2px;
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+}
+
 .action-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -1955,11 +1983,16 @@ input[type="number"] {
     }
 }
 
+.action-btn.is-confirmed,
+.action-btn.is-confirmed:hover,
 .copy-btn.is-copied,
-.copy-btn.is-copied:hover {
+.copy-btn.is-copied:hover,
+.download-btn.is-downloaded,
+.download-btn.is-downloaded:hover {
     transform: translateY(0);
 }
 
+.action-btn.is-confirmed svg,
 .copy-btn.is-copied svg,
 .download-btn.is-downloaded svg {
     transform-origin: center;
